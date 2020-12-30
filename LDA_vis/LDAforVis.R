@@ -38,7 +38,7 @@ library(stringr)  # for replacement
 dataset_original = read.csv('/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/data/USETHIS_scopus_INT_n1334_20201224_Self-Stoped_R02.csv', stringsAsFactors = FALSE)
 
 #dataset_original <- read_csv("../input/deceptive-opinion.csv")
-data <- Corpus(VectorSource(dataset_original$Abstract))
+#data <- Corpus(VectorSource(dataset_original$Abstract))
 ### for Self-Stoped
 data <- Corpus(VectorSource(dataset_original$Abstract_R3))
 
@@ -93,7 +93,7 @@ set.seed(77)
 ### Optimal N of Topics with LDAtuning ###
 G <- 10000   # Default value of Iteration = 2000
 alpha <- 1.5
-alpha <- 4
+
 
 
 result <- FindTopicsNumber(dtm,topics = seq(from = 2, to = 100, by = 1),
@@ -130,7 +130,7 @@ FindTopicsNumber_plot(result)
 
 ### Intra Best N --> 14, 21 // 9, 29, 33
 
-K = 33
+K = 32
 G <- 10000   # Default value of Iteration = 2000
 alpha <- 0.75
 alpha <- 1.5
@@ -168,6 +168,12 @@ m = LDA(dtm, method = "Gibbs", k = K,  control = list(alpha=50/K,
                                                       burnin=0, 
                                                       thin=2000),
         mc.cores=8)
+mname <- paste0("LDAmodel_",K,"Topics", collapse = ,".Rdata")
+save(m, file=mname)
+m2 <- load("/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/LDAmodel_32Topics.Rdata")
+rm(LDA_Model_k32)
+LDA_Model_k32_r4 <- m
+class(m)
 
 #토픽별 상위 30개 추출
 terms(m, 30)
@@ -195,7 +201,7 @@ json = createJSON(phi = phi,
                   doc.length = doc.length,
                   term.frequency = term.freq)
 serVis(json)
-serVis(json, out.dir = '/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/Results_LDAvis/k32_R02', open.browser = FALSE)
+serVis(json, out.dir = '/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/Results_LDAvis/k32r4', open.browser = FALSE)
 #serVis(json, out.dir = 'vis', open.browser = FALSE)
 #serVis(json, out.dir='LDAvis_20201229_k33_a1.5', open.browser=FALSE)
 
