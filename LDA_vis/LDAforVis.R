@@ -1,11 +1,11 @@
 ### Install Packages ###
-install.packages("corpus")
-install.packages("quanteda")
-install.packages("textclean")
-install.packages("LDAvis")
-install.packages("SnowballC")
-install.packages("topicmodels")
-install.packages("ldatuning")
+# install.packages("corpus")
+# install.packages("quanteda")
+# install.packages("textclean")
+# install.packages("LDAvis")
+# install.packages("SnowballC")
+# install.packages("topicmodels")
+# install.packages("ldatuning")
 
 
 ### LDA Data Preparation ###
@@ -32,12 +32,10 @@ library(stringr)  # for replacement
 
 
 ### Read csv file & convert to CORPUS ####
-dataset_original = read.csv(file.choose(), stringsAsFactors = FALSE) 
+#dataset_original = read.csv(file.choose(), stringsAsFactors = FALSE) 
 
 ### Self-Stoped
 dataset_original = read.csv('/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/data/USETHIS_scopus_INT_n1334_20201224_Self-Stoped_R02.csv', stringsAsFactors = FALSE)
-
-
 
 #dataset_original <- read_csv("../input/deceptive-opinion.csv")
 data <- Corpus(VectorSource(dataset_original$Abstract))
@@ -51,7 +49,8 @@ data <- Corpus(VectorSource(dataset_original$Abstract_R3))
 ### 
 mycorp <- corpus(data)
 mycorporp = corpus_reshape(mycorp, to = "paragraphs")
-save(mycorporp, file="mycorporp_4comp.rdata")
+#save(mycorporp, file="mycorporp_4comp.rdata")
+
 ### corpus 파일에서 불용어 처리하기 ###
 ### Customized stopwords업로드
 #stopwordsINT <- readLines(file.choose(), encoding="UTF-8")#.txt 파일만 선택하기
@@ -64,8 +63,6 @@ save(mycorporp, file="mycorporp_4comp.rdata")
 # 적어도 k=5개 이상 문서에서 나온 단어만 유지 min_docfreq = k
 dfm = dfm(mycorporp, remove_punct=T, remove=stopwords("english"))
 dfm = dfm_trim(dfm, min_docfreq = 5)
-
-
 
 # ### After Corpus before LDA
 # stopWords <- c()
@@ -92,27 +89,6 @@ set.seed(77)
 
 ##############################################################################
 
-### 데이터 날짜포멧 바꾸면 사용
-#articles$rec <- ymd(articles$rec)
-#articles$year <- year(articles$rec)
-
-### 저널명으로 Filter 걸 때 사용
-dental <- c('치과', '치아교정', '치과보증금환불', '치과병원', '임플란트 보철', '이빨', '임플란트', '치과임풀란트', '치과치료 불량', '치과진료', '페이스라인치과', '치과보철치료', '치과의료', '한울치과', '의료사고(치과)', '치과보철', '치과 보철비용', '플라스틱 치아 교정기', '치과 임프란트', '치과 교정', '치과교정', '치과 포철', '치아브릿지', '치아', '교합안정장치', '충치 치료')
-
-dental_df <- articles %>%
-  filter(cat %in% dental)
-
-table(dental_df$cat)
-
-dental_df$rec <- ymd(dental_df$rec)
-dental_df$year <- year(dental_df$rec)
-
-### 연도별 빈도 그래프 ################ 수정 필요!!!!
-ggplot(data=as.data.frame(table(dataset_original$year)/table(dataset_original$year)), aes(x=Var1, y=Freq)) +
-  geom_bar(stat='identity') +
-  labs(x="Year", y="Frequency of dental complaints")
-
-##############################################################################
 
 ### Optimal N of Topics with LDAtuning ###
 G <- 10000   # Default value of Iteration = 2000
@@ -154,7 +130,7 @@ FindTopicsNumber_plot(result)
 
 ### Intra Best N --> 14, 21 // 9, 29, 33
 
-K = 32
+K = 33
 G <- 10000   # Default value of Iteration = 2000
 alpha <- 0.75
 alpha <- 1.5
@@ -219,7 +195,8 @@ json = createJSON(phi = phi,
                   doc.length = doc.length,
                   term.frequency = term.freq)
 serVis(json)
-serVis(json, out.dir = 'vis', open.browser = FALSE)
+serVis(json, out.dir = '/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/Results_LDAvis/k32_R02', open.browser = FALSE)
+#serVis(json, out.dir = 'vis', open.browser = FALSE)
 #serVis(json, out.dir='LDAvis_20201229_k33_a1.5', open.browser=FALSE)
 
 
