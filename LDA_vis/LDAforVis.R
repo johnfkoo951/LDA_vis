@@ -218,7 +218,7 @@ json = createJSON(phi = phi,
                   vocab = vocab,
                   doc.length = doc.length,
                   term.frequency = term.freq)
-#serVis(json)
+serVis(json)
 serVis(json, out.dir = 'vis', open.browser = FALSE)
 #serVis(json, out.dir='LDAvis_20201229_k33_a1.5', open.browser=FALSE)
 
