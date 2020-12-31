@@ -35,12 +35,17 @@ library(stringr)  # for replacement
 #dataset_original = read.csv(file.choose(), stringsAsFactors = FALSE) 
 
 ### Self-Stoped
-dataset_original = read.csv('/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/data/USETHIS_scopus_INT_n1334_20201224_Self-Stoped_R03.csv', stringsAsFactors = FALSE)
+dataset_original = read.csv('/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/data/USETHIS_scopus_INT_n1334_20201224_Self-Stoped_R02.csv', stringsAsFactors = FALSE) #3
 
 #dataset_original <- read_csv("../input/deceptive-opinion.csv")
 #data <- Corpus(VectorSource(dataset_original$Abstract))
 ### for Self-Stoped
-data <- Corpus(VectorSource(dataset_original$Abstract_R4))
+data <- Corpus(VectorSource(dataset_original$Abstract_R3)) #4
+
+library(readxl)
+dataset_original <- read_excel("/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/data/USETHIS_scopus_INT_n1326_20201231_R01.xlsx")
+data <- Corpus(VectorSource(dataset_original$Abstract_R4)) #4
+
 
 ### 어근추출 ### <- 필요 시 사용
 #data <- tm_map(data, stemDocument)
@@ -172,8 +177,8 @@ mname <- paste0("LDAmodel_",K,"Topics", collapse = ,".Rdata")
 save(m, file=mname)
 m2 <- load("/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/LDAmodel_32Topics.Rdata")
 rm(LDA_Model_k32)
-LDA_Model_R3R4Data_k32_R07s <- m
-m <- LDA_Model_R3R4Data_k32_R02s
+LDA_Model_R3R4Data_k32_R08s <- m
+m <- LDA_Model_R3R4Data_k32_R04
 
 class(m)
 
@@ -203,7 +208,8 @@ json = createJSON(phi = phi,
                   doc.length = doc.length,
                   term.frequency = term.freq)
 serVis(json)
-serVis(json, out.dir = '/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/Results_LDAvis/r3r4k32r7s', open.browser = FALSE)
+
+serVis(json, out.dir = '/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/Results_LDAvis/r3r4k32r8s', open.browser = FALSE)
 
 #serVis(json, out.dir = 'vis', open.browser = FALSE)
 #serVis(json, out.dir='LDAvis_20201229_k33_a1.5', open.browser=FALSE)
