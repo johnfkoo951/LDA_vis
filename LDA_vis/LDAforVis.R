@@ -176,8 +176,8 @@ m = LDA(dtm, method = "Gibbs", k = K,  control = list(alpha=50/K,
 mname <- paste0("LDAmodel_",K,"Topics", collapse = ,".Rdata")
 save(m, file=mname)
 m2 <- load("/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/LDAmodel_32Topics.Rdata")
-rm(LDA_Model_k32)
-LDA_Model_R3R4Data_k32_R08s <- m
+#rm(LDA_Model_n1326_k32_R01)
+LDA_Model_n1326_k32_R06s <- m
 m <- LDA_Model_R3R4Data_k32_R04
 
 class(m)
@@ -209,7 +209,7 @@ json = createJSON(phi = phi,
                   term.frequency = term.freq)
 serVis(json)
 
-serVis(json, out.dir = '/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/Results_LDAvis/r3r4k32r8s', open.browser = FALSE)
+serVis(json, out.dir = '/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/Results_LDAvis/n1326_k32s_R06s', open.browser = FALSE)
 
 #serVis(json, out.dir = 'vis', open.browser = FALSE)
 #serVis(json, out.dir='LDAvis_20201229_k33_a1.5', open.browser=FALSE)

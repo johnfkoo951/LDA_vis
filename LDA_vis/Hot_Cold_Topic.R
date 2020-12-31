@@ -3,7 +3,10 @@ install.packages("lattice")
 library(xtable)
 library(lattice)
 
-
+length(dataset_original$Year)
+str(dataset_original$Year)
+str(dataset_original)
+length(theta)
 
 ### Hot and Cold Topics
 
