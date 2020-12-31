@@ -112,7 +112,7 @@ result <- FindTopicsNumber(dtm,topics = seq(from = 2, to = 100, by = 1),
 result
 
 #write.csv(result,file="LDAtuning_result.csv")
-write.csv(result,file="LDAtuning_result_20201229_a1.5_G10k.csv")
+write.csv(result,file="LDAtuning_result_20201231_a1.5_G10k.csv")
 FindTopicsNumber_plot(result)
 
 # topic_num <-
@@ -177,8 +177,8 @@ mname <- paste0("LDAmodel_",K,"Topics", collapse = ,".Rdata")
 save(m, file=mname)
 m2 <- load("/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/LDAmodel_32Topics.Rdata")
 #rm(LDA_Model_n1326_k32_R01)
-LDA_Model_n1326_k32_R06s <- m
-m <- LDA_Model_R3R4Data_k32_R04
+LDA_Model_n1326_k32_R09s <- m
+m <- LDA_Model_n1326_k32_R05s
 
 class(m)
 
@@ -209,7 +209,7 @@ json = createJSON(phi = phi,
                   term.frequency = term.freq)
 serVis(json)
 
-serVis(json, out.dir = '/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/Results_LDAvis/n1326_k32s_R06s', open.browser = FALSE)
+serVis(json, out.dir = '/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/Results_LDAvis/n1326_k32s_R09s', open.browser = FALSE)
 
 #serVis(json, out.dir = 'vis', open.browser = FALSE)
 #serVis(json, out.dir='LDAvis_20201229_k33_a1.5', open.browser=FALSE)
