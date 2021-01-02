@@ -3,11 +3,23 @@ library(xlsx)
 
 ### Write Data in Excel
 write.xlsx(ddd,"/.xlsx", sheetName = "Sheet1",
-           col.name = TRUE, row,names = TRUE, append = FALSE)
+           col.name = TRUE, row.names = TRUE, append = FALSE)
 
 ### Append Data in Same File
 write.xlsx(ddd2,"/.xlsx", sheetName = "Sheet1",
-           col.name = TRUE, row,names = TRUE, append = TRUE)
+           col.name = TRUE, row.names = TRUE, append = TRUE)
+
+
+
+### Sheet 1 ###
+write.xlsx(theta_mean_by_year,"hot_cold_theta.xlsx", sheetName = "theta_mean_by_year",
+           col.name = TRUE, row.names = TRUE, append = FALSE)
+
+### Sheet 2 ###
+write.xlsx(theta_mean_lm_coef,"hot_cold_theta.xlsx", sheetName = "theta_mean_lm_coef",
+           col.name = TRUE, row.names = TRUE, append = TRUE)
+
+
 
 
 str(theta_mean_lm)
