@@ -177,7 +177,7 @@ mname <- paste0("LDAmodel_",K,"Topics", collapse = ,".Rdata")
 save(m, file=mname)
 m2 <- load("/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/LDAmodel_32Topics.Rdata")
 #rm(LDA_Model_n1326_k32_R01)
-LDA_Model_n1321_k32_R01s <- m
+LDA_Model_n1321_k32_R05s <- m
 # m <- LDA_Model_n1326_k32_R05s
 
 # class(m)
@@ -209,7 +209,7 @@ json = createJSON(phi = phi,
                   term.frequency = term.freq)
 serVis(json)
 
-serVis(json, out.dir = '/Users/yhn_hac/Hanyang University/01-2. Study_Alone/R Data Analysis/LDA (Latent Dirichlet Allocation)/LDA_vis/Results_LDAvis/n1321_k32s_R01s', open.browser = FALSE)
+serVis(json, out.dir = '/Users/yhn_hac/Library/Mobile Documents/com~apple~CloudDocs/1. R Projects/LDA_vis/Results_LDAvis/jan8_n1321_k32_R05s', open.browser = FALSE)
 
 #serVis(json, out.dir = 'vis', open.browser = FALSE)
 #serVis(json, out.dir='LDAvis_20201229_k33_a1.5', open.browser=FALSE)
